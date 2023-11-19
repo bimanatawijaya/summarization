@@ -33,7 +33,7 @@ export function ResultDialog({ title, result, children }: ResultDialogProps) {
             {children}
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Summarization of "{title}"</AlertDialogTitle>
+                    <AlertDialogTitle>Summarization of &quot;{title}&quot;</AlertDialogTitle>
                     <AlertDialogDescription>
                         {result}
                     </AlertDialogDescription>
