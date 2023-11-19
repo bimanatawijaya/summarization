@@ -17,7 +17,7 @@ export default function Home() {
   })
 
   useEffect(() => {
-    if (result.title !== "" && result.content !== "") {
+    if (result.title && result.content) {
       ref.current?.click()
     }
   }, [result])
