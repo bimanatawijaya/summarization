@@ -9,7 +9,7 @@ type Result = {
 }
 
 const openai = new OpenAI({
-    apiKey: "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"
+    apiKey: process.env.OPENAPI_APIKEY
 });
 
 export default async function summerazeNews(prevState: any, formData: FormData): Promise<Result> {

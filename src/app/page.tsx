@@ -7,7 +7,6 @@ import summerazeNews from '~/action'
 import { ResultDialog } from '~/components/AlertDialog'
 import { TypographyH2 } from '~/components/TypographyH2'
 import { TypographyH4 } from '~/components/TypographyH4'
-import { AlertDialogAction } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 
