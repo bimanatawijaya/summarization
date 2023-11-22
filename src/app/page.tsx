@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     if (result.title && result.content) {
       ref.current?.click()
-    } else {
+    } else if (!result.title && !result.content) {
       error.current?.click()
     }
   }, [result])
