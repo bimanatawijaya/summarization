@@ -48,5 +48,25 @@ export function ResultDialog({ title, result, children }: ResultDialogProps) {
             </AlertDialogContent>
         </AlertDialog >
     )
+}
 
+export function ResultDialogError({ title, result, children }: ResultDialogProps) {
+    return (
+        <>
+            <AlertDialog>
+                {children}
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Sorry , {title}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            {result}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>Close</AlertDialogCancel>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog >
+        </>
+    )
 }
