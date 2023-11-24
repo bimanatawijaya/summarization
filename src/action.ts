@@ -8,6 +8,7 @@ import { DetikScrapper } from "./utils/detik-scrapper";
 type Result = {
     title: string | null
     content: string | null
+    error: boolean | null
 }
 
 const openai = new OpenAI({
@@ -26,7 +27,7 @@ export default async function summerazeNews(prevState: any, formData: FormData):
             content: radar.content
         })
 
-        return { title: result.title, content: result.content }
+        return { title: result.title, content: result.content, error: false }
     } else if (url.includes("tribunnews.com")) {
         const responseTribun = await response.text()
         const tribun = TribunNews(responseTribun)
@@ -35,7 +36,7 @@ export default async function summerazeNews(prevState: any, formData: FormData):
             content: tribun.content
         })
 
-        return { title: result.title, content: result.content }
+        return { title: result.title, content: result.content, error: false }
     } else if (url.includes("detik.com")) {
         const responseDetik = await response.text()
         const detik = DetikScrapper(responseDetik)
@@ -44,10 +45,10 @@ export default async function summerazeNews(prevState: any, formData: FormData):
             content: detik.content
         })
 
-        return { title: result.title, content: result.content }
+        return { title: result.title, content: result.content, error: false }
     }
 
-    return { title: null, content: null }
+    return { title: null, content: null, error: true }
 }
 
 

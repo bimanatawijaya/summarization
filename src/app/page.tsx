@@ -1,7 +1,7 @@
 "use client"
 
 import { AlertDialogTrigger } from '@radix-ui/react-alert-dialog'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import summerazeNews from '~/action'
 import { ResultDialog, ResultDialogError } from '~/components/AlertDialog'
@@ -13,19 +13,23 @@ import { Input } from '~/components/ui/input'
 export default function Home() {
 
   const [result, setResult] = useFormState(summerazeNews, {
-    title: null, content: null
+    title: null, content: null, error: null
   })
 
   useEffect(() => {
     if (result.title && result.content) {
       ref.current?.click()
-    } else if (!result.title && !result.content) {
-      error.current?.click()
+    }
+  }, [result])
+
+  useEffect(() => {
+    if (result.error) {
+      errorDialog.current?.click()
     }
   }, [result])
 
   const ref = useRef<HTMLButtonElement>(null)
-  const error = useRef<HTMLButtonElement>(null)
+  const errorDialog = useRef<HTMLButtonElement>(null)
 
   return (
     <main>
@@ -41,7 +45,7 @@ export default function Home() {
           title={"Your Request is not allowed"}
           result={"The link you entered is not appropriate"}
         >
-          <AlertDialogTrigger ref={error} className='hidden' />
+          <AlertDialogTrigger ref={errorDialog} className='hidden' />
         </ResultDialogError>
         <div className="text-center ">
           <TypographyH2>Rangkuman Berita</TypographyH2>
