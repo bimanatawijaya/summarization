@@ -17,10 +17,10 @@ const openai = new OpenAI({
 
 export default async function summerazeNews(prevState: any, formData: FormData): Promise<Result> {
     const url = formData.get("url") as string
-    const response = await fetch(url);
 
     if (url.includes("radarbogor.id")) {
-        const responseRadarBogor = await response.text()
+        const fetchUrlRadar = await fetch(url);
+        const responseRadarBogor = await fetchUrlRadar.text()
         const radar = RadarBogorScrapper(responseRadarBogor)
         var result = await fetchOpenAi({
             title: radar.title,
@@ -29,7 +29,8 @@ export default async function summerazeNews(prevState: any, formData: FormData):
 
         return { title: result.title, content: result.content, error: false }
     } else if (url.includes("tribunnews.com")) {
-        const responseTribun = await response.text()
+        const fetchUrlTribun = await fetch(url);
+        const responseTribun = await fetchUrlTribun.text()
         const tribun = TribunNews(responseTribun)
         var result = await fetchOpenAi({
             title: tribun.title,
@@ -38,7 +39,8 @@ export default async function summerazeNews(prevState: any, formData: FormData):
 
         return { title: result.title, content: result.content, error: false }
     } else if (url.includes("detik.com")) {
-        const responseDetik = await response.text()
+        const fetchUrlDetik = await fetch(url);
+        const responseDetik = await fetchUrlDetik.text()
         const detik = DetikScrapper(responseDetik)
         var result = await fetchOpenAi({
             title: detik.title,
